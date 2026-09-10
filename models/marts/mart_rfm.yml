@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: mart_rfm
+    columns:
+      - name: customer_unique_id
+        tests:
+          - not_null
+          - unique
