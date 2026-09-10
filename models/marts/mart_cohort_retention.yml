@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: mart_cohort_retention
+    columns:
+      - name: cohort_month
+        tests:
+          - not_null
