@@ -30,3 +30,4 @@ target/
 
 # Temporary files
 tempCodeRunnerFile.py
+data/processed/*.csv
