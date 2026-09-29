@@ -33,3 +33,4 @@ tempCodeRunnerFile.py
 data/processed/*.csv
 *.json
 .DS_Store
+.ipynb_checkpoints/
