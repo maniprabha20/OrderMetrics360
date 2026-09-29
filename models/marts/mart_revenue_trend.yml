@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: mart_revenue_trend
+    description: "Monthly revenue and order performance metrics used to track sales trends and average order value over time."
+    columns:
+      - name: order_month
+        description: "Month in which the orders were placed."
+
+      - name: order_count
+        description: "Number of distinct orders placed during the month, excluding canceled and unavailable orders."
+
+      - name: revenue
+        description: "Total item revenue generated from valid orders during the month."
+
+      - name: average_order_value
+        description: "Average revenue per order for the month, calculated by dividing total revenue by the number of orders."

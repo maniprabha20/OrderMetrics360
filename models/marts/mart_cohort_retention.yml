@@ -2,7 +2,15 @@ version: 2
 
 models:
   - name: mart_cohort_retention
+    description: "Cohort-based customer retention metrics showing how customer activity changes over time after the first purchase."
     columns:
       - name: cohort_month
+        description: "Month in which a customer made their first purchase."
         tests:
           - not_null
+
+      - name: months_since_first_purchase
+        description: "Number of months elapsed since the customer's first purchase, used to measure retention over time."
+
+      - name: active_customers
+        description: "Number of distinct customers who placed an order during the corresponding cohort month and retention period."

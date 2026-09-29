@@ -2,8 +2,29 @@ version: 2
 
 models:
   - name: mart_delivery_reviews
+    description: "Order-level delivery performance and customer review data used to analyze the relationship between delivery timeliness and satisfaction."
+
     columns:
       - name: order_id
+        description: "Unique order identifier."
         tests:
           - not_null
           - unique
+
+      - name: customer_unique_id
+        description: "Unique customer identifier associated with the order."
+
+      - name: order_purchase_timestamp
+        description: "Timestamp when the customer placed the order."
+
+      - name: order_delivered_customer_date
+        description: "Date when the order was delivered to the customer."
+
+      - name: order_estimated_delivery_date
+        description: "Estimated delivery date recorded for the order."
+
+      - name: review_score
+        description: "Customer review score associated with the order, measured on a 1-to-5 scale."
+
+      - name: delivery_delay_days
+        description: "Difference in days between the actual delivery date and the estimated delivery date. Positive values indicate a delay."

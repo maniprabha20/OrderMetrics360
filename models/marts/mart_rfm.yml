@@ -2,8 +2,20 @@ version: 2
 
 models:
   - name: mart_rfm
+    description: "Customer-level RFM metrics used to understand customer recency, purchase frequency, and monetary value."
+
     columns:
       - name: customer_unique_id
+        description: "Unique customer identifier used to track purchases across orders."
         tests:
           - not_null
           - unique
+
+      - name: recency
+        description: "Number of days since the customer's most recent purchase, measured from the latest order date in the dataset."
+
+      - name: frequency
+        description: "Number of distinct orders placed by the customer."
+
+      - name: monetary
+        description: "Total payment value associated with the customer's valid orders."
