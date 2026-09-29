@@ -31,3 +31,5 @@ target/
 # Temporary files
 tempCodeRunnerFile.py
 data/processed/*.csv
+*.json
+.DS_Store
