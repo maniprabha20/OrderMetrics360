@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OrderMetrics360 — E-commerce Business Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14181F;
+    --paper:#F3F4F0;
+    --paper-alt:#EAEBE5;
+    --teal:#1F6B5C;
+    --clay:#C4622D;
+    --rule:#D8D5CC;
+    --ink-soft:#4B5159;
+    box-sizing:border-box;
+  }
+  *{box-sizing:inherit; margin:0; padding:0;}
+  html{scroll-padding-top:24px;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:var(--teal);}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  header.hero{
+    padding:88px 0 56px;
+    border-bottom:1px solid var(--rule);
+  }
+  .eyebrow-line{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+    letter-spacing:0.01em;
+    margin-bottom:22px;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.08;
+    max-width:14ch;
+    margin-bottom:20px;
+  }
+  p.lede{
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin-bottom:44px;
+  }
+  .hero-links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    text-decoration:none;
+    border-bottom:1px solid var(--teal);
+    padding-bottom:2px;
+    margin-right:28px;
+  }
+  .hero-links a:hover{opacity:0.7;}
+
+  .kpi-strip{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0;
+    margin-top:56px;
+    border-top:1px solid var(--rule);
+  }
+  .kpi{
+    padding:22px 20px 0 0;
+    border-right:1px solid var(--rule);
+  }
+  .kpi:last-child{border-right:none;}
+  .kpi-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:clamp(1.5rem, 3vw, 2.1rem);
+    color:var(--teal);
+    line-height:1;
+    margin-bottom:8px;
+  }
+  .kpi-label{
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+
+  section{
+    padding:64px 0;
+    border-bottom:1px solid var(--rule);
+  }
+  section:last-of-type{border-bottom:none;}
+
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--teal);
+    margin-bottom:10px;
+  }
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.8rem;
+    max-width:20ch;
+    margin-bottom:22px;
+  }
+  .prose{
+    max-width:66ch;
+  }
+  .prose p{margin-bottom:16px; color:var(--ink-soft);}
+  .prose p:last-child{margin-bottom:0;}
+  .prose strong{color:var(--ink); font-weight:600;}
+
+  .arch-flow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    background:var(--paper-alt);
+    border:1px solid var(--rule);
+    padding:24px;
+    white-space:pre;
+    overflow-x:auto;
+    margin:28px 0;
+    line-height:1.7;
+  }
+
+  .img-frame{
+    border:1px solid var(--rule);
+    background:var(--paper-alt);
+    margin:24px 0;
+  }
+  .img-frame img{width:100%;}
+  .img-caption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    padding:10px 0 0;
+  }
+  .img-placeholder{
+    aspect-ratio:16/9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+    padding:20px;
+    text-align:center;
+  }
+
+  .finding{
+    border-left:2px solid var(--teal);
+    padding:4px 0 4px 22px;
+    margin-bottom:28px;
+  }
+  .finding.risk{border-left-color:var(--clay);}
+  .finding-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .finding-label.risk{color:var(--clay);}
+  .finding h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.15rem;
+    margin-bottom:8px;
+  }
+  .finding p{color:var(--ink-soft); font-size:0.97rem; max-width:60ch;}
+  .finding .evidence{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--teal);
+    margin-top:8px;
+  }
+
+  .stack-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(150px, 1fr));
+    gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+    margin-top:8px;
+  }
+  .stack-item{
+    background:var(--paper);
+    padding:16px 18px;
+  }
+  .stack-item .name{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    font-weight:500;
+  }
+  .stack-item .role{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:3px;
+  }
+
+  .memo-block{
+    background:var(--paper-alt);
+    border:1px solid var(--rule);
+    padding:28px;
+    margin-top:24px;
+  }
+  .memo-block p{color:var(--ink-soft); margin-bottom:14px;}
+  .memo-block p:last-child{margin-bottom:0;}
+
+  footer{
+    padding:48px 0 80px;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  footer .name{
+    font-family:'Fraunces', serif;
+    font-size:1rem;
+  }
+  footer .links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    margin-left:20px;
+    text-decoration:none;
+    border-bottom:1px solid var(--teal);
+  }
+  footer .links a:first-child{margin-left:0;}
+
+  @media (max-width:640px){
+    header.hero{padding:56px 0 40px;}
+    .kpi-strip{grid-template-columns:repeat(2, 1fr);}
+    .kpi{padding-bottom:20px; margin-bottom:0;}
+    .kpi:nth-child(2){border-right:none;}
+    section{padding:44px 0;}
+    footer .wrap{flex-direction:column; align-items:flex-start;}
+    footer .links a{margin-left:0; margin-right:20px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow-line">Data Analyst Portfolio Project</div>
+    <h1 class="title">OrderMetrics360</h1>
+    <p class="lede">
+      A full-pipeline analysis of 100K+ Brazilian e-commerce orders — from raw data
+      to a tested, documented warehouse, to statistically validated business
+      recommendations.
+    </p>
+    <div class="hero-links">
+      <a href="#dashboard">View Dashboard</a>
+      <a href="https://github.com/maniprabha20/OrderMetrics360" target="_blank" rel="noopener">GitHub Repo</a>
+      <a href="#memo">Business Memo</a>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi">
+        <div class="kpi-num">100K+</div>
+        <div class="kpi-label">orders analyzed</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">9</div>
+        <div class="kpi-label">source tables modeled</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">5</div>
+        <div class="kpi-label">dbt-tested marts</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">p&lt;.001</div>
+        <div class="kpi-label">delivery-satisfaction link</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="problem">
+  <div class="wrap">
+    <div class="section-num">01 — Business Problem</div>
+    <h2>Where is revenue coming from, and who's at risk of leaving?</h2>
+    <div class="prose">
+      <p>
+        Leadership at an e-commerce marketplace needs a clear read on business health:
+        which customers actually drive revenue, whether delivery performance is
+        costing them satisfaction, and where operational attention should go first.
+      </p>
+      <p>
+        This project answers that with a real, end-to-end analytics workflow —
+        <strong>not</strong> a single chart or a one-off notebook — built the way an
+        analyst would build it inside a company: a modeled warehouse, tested
+        transformations, statistical validation, and a dashboard stakeholders can
+        actually use.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="architecture">
+  <div class="wrap">
+    <div class="section-num">02 — Data Pipeline</div>
+    <h2>Raw CSVs to a governed, tested warehouse</h2>
+    <div class="prose">
+      <p>
+        Nine raw Olist tables are staged, tested, and modeled into five business-ready
+        marts using dbt on BigQuery, then analyzed in Python and visualized in Power BI.
+      </p>
+    </div>
+    <div class="arch-flow">Olist CSVs (9 tables)
+     │
+     ▼
+BigQuery — raw layer
+     │
+     ▼
+dbt — staging models (cleaned, typed, tested)
+     │
+     ▼
+dbt — mart models
+  ├─ mart_revenue_trend
+  ├─ mart_rfm
+  ├─ mart_cohort_retention
+  ├─ mart_delivery_reviews
+  └─ mart_category_performance
+     │
+     ├──▶ Python / Pandas — EDA + hypothesis testing
+     │
+     └──▶ Power BI — KPI dashboard + DAX measures</div>
+    <div class="img-frame">
+      <img src="images/lineage-graph.png" alt="OrderMetrics360 dbt lineage graph">
+    </div>
+    <p class="img-caption">Fig. 1 — dbt lineage graph, raw → staging → marts</p>
+  </div>
+</section>
+
+<section id="insights">
+  <div class="wrap">
+    <div class="section-num">03 — Key Findings</div>
+    <h2>Three findings that change what the business should do</h2>
+
+    <div class="finding">
+      <div class="finding-label">FINDING 01 — REVENUE CONCENTRATION</div>
+      <h3>A small share of customers drives a disproportionate share of revenue</h3>
+      <p>RFM segmentation shows the "Champions" segment, though a minority of the customer base, accounts for the largest share of total revenue.</p>
+      <div class="evidence">→ See RFM Segmentation, section 04</div>
+    </div>
+
+    <div class="finding risk">
+      <div class="finding-label risk">FINDING 02 — DELIVERY RISK</div>
+      <h3>Delayed deliveries significantly lower customer satisfaction</h3>
+      <p>Orders delivered late receive measurably lower review scores than on-time orders — and the gap is statistically significant, not random noise.</p>
+      <div class="evidence">→ Mann-Whitney U test, p &lt; 0.001 — see section 05</div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-label">FINDING 03 — PAYMENT BEHAVIOR</div>
+      <h3>Payment method relates to satisfaction outcomes</h3>
+      <p>A chi-square test confirms payment type and customer satisfaction are not independent — certain payment methods correlate with lower reported satisfaction.</p>
+      <div class="evidence">→ Chi-square test — see section 05</div>
+    </div>
+  </div>
+</section>
+
+<section id="dashboard">
+  <div class="wrap">
+    <div class="section-num">04 — Dashboard & Segmentation</div>
+    <h2>RFM segmentation, cohort retention & the live dashboard</h2>
+    <div class="prose">
+      <p>Built in Power BI with DAX-driven measures (revenue, AOV, SLA compliance), connected directly to the BigQuery marts.</p>
+    </div>
+    <div class="img-frame">
+      <img src="images/dashboard-overview.png" alt="OrderMetrics360 Power BI dashboard overview">
+    </div>
+    <p class="img-caption">Fig. 2 — KPI overview & monthly revenue trend</p>
+
+    <div class="img-frame">
+      <img src="images/cohort-heatmap.png" alt="OrderMetrics360 cohort retention heatmap">
+    </div>
+    <p class="img-caption">Fig. 3 — Cohort retention heatmap (Matrix visual)</p>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="wrap">
+    <div class="section-num">05 — Statistical Analysis</div>
+    <h2>Validated, not assumed</h2>
+    <div class="prose">
+      <p>
+        Every relationship reported above was tested, not eyeballed. Delivery delay
+        vs. review score was compared with a <strong>Mann-Whitney U test</strong>
+        (review scores are ordinal, so a t-test's normality assumption doesn't apply).
+        Payment method vs. satisfaction was tested with a <strong>chi-square test of
+        independence</strong>. Both returned p-values below 0.05, meaning the patterns
+        are real effects in the data, not sampling noise.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="memo">
+  <div class="wrap">
+    <div class="section-num">06 — Business Recommendations</div>
+    <h2>From findings to action</h2>
+    <div class="memo-block">
+      <p><strong>1. Protect high-value segments.</strong> Champions represent a small share of customers but a large share of revenue — prioritize retention outreach here first.</p>
+      <p><strong>2. Fix delivery SLAs on the worst-performing routes.</strong> The delivery-satisfaction link is statistically confirmed — this is a lever, not a guess.</p>
+      <p><strong>3. Investigate payment-method friction.</strong> Certain payment types correlate with lower satisfaction independent of delivery — worth a targeted follow-up study.</p>
+    </div>
+    <p style="margin-top:20px; font-family:'IBM Plex Mono', monospace; font-size:13px;">
+      → Full memo: <a href="https://github.com/maniprabha20/OrderMetrics360/blob/main/BUSINESS_MEMO.md" target="_blank" rel="noopener">BUSINESS_MEMO.md</a>
+    </p>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="section-num">07 — Tools & Technologies</div>
+    <h2>Built end to end with</h2>
+    <div class="stack-grid">
+      <div class="stack-item"><div class="name">BigQuery</div><div class="role">Cloud warehouse</div></div>
+      <div class="stack-item"><div class="name">dbt</div><div class="role">Transform + test</div></div>
+      <div class="stack-item"><div class="name">SQL</div><div class="role">Modeling & KPIs</div></div>
+      <div class="stack-item"><div class="name">Python</div><div class="role">EDA & statistics</div></div>
+      <div class="stack-item"><div class="name">Pandas</div><div class="role">Data wrangling</div></div>
+      <div class="stack-item"><div class="name">SciPy</div><div class="role">Hypothesis testing</div></div>
+      <div class="stack-item"><div class="name">Power BI</div><div class="role">Dashboard + DAX</div></div>
+      <div class="stack-item"><div class="name">Excel</div><div class="role">Exec summary</div></div>
+      <div class="stack-item"><div class="name">Git / GitHub</div><div class="role">Version control</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="name">OrderMetrics360</div>
+    <div class="links">
+      <a href="https://github.com/maniprabha20/OrderMetrics360" target="_blank" rel="noopener">GitHub</a>
+      <a href="#memo">Business Memo</a>
+      <a href="#dashboard">Dashboard</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
