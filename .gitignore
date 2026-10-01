@@ -34,3 +34,4 @@ data/processed/*.csv
 *.json
 .DS_Store
 .ipynb_checkpoints/
+dashboard/.streamlit/secrets.toml
