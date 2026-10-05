@@ -68,7 +68,7 @@ col1, col2, col3 = st.columns(3)
 
 col1.metric(
     "Total Revenue",
-    f"₹{total_revenue:,.0f}"
+    f"R${total_revenue:,.0f}"
 )
 
 col2.metric(
@@ -78,7 +78,7 @@ col2.metric(
 
 col3.metric(
     "Average Order Value",
-    f"₹{avg_order_value:,.2f}"
+    f"R${avg_order_value:,.2f}"
 )
 
 
