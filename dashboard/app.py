@@ -10,9 +10,16 @@ st.set_page_config(
 )
 
 # BigQuery connection
-client = bigquery.Client.from_service_account_json(
-    "/Users/student/Downloads/ordermetrics360-1b2c7e064813.json",
-    project="ordermetrics360"
+from google.oauth2 import service_account
+
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"]
+)
+
+client = bigquery.Client(
+    credentials=credentials,
+    project="ordermetrics360",
+    location="asia-south1"
 )
 
 
