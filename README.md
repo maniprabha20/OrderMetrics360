@@ -1,4 +1,9 @@
 # OrderMetrics360
+## 🌐 Project Portfolio
+
+[View OrderMetrics360 Project Portfolio](https://maniprabha20.github.io/OrderMetrics360/)
+
+[Open Live Interactive Dashboard](https://ordermetrics360-cc8l8fgsfkpewwbf43bem6.streamlit.app/)
 
 E-commerce Business Analytics using BigQuery, dbt, Python, and Power BI.
 
